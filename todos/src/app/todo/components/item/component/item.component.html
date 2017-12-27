@@ -1,0 +1,23 @@
+<form (ngSubmit)="addItem()">
+    <mat-form-field class="example-full-width" style="width: 60%">
+        <input matInput placeholder="Add to do item" name="name" [(ngModel)]="item.name">
+    </mat-form-field>
+    <button mat-mini-fab color="warn">
+            <i class="material-icons">add</i>
+    </button>
+</form>
+<div *ngIf="items.length > 0">
+    <mat-list class="items-list">
+        <mat-list-item *ngFor="let item of items" [class.completed]="item.complete">
+
+            <mat-checkbox>
+            </mat-checkbox>
+
+            <label>{{item.name}}</label>
+
+            <button mat-button>
+            <mat-icon>delete_forever</mat-icon>
+            </button>
+        </mat-list-item>
+    </mat-list>
+</div>
