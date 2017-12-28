@@ -12,8 +12,11 @@
             <mat-list-item *ngFor="let item of items" [class.completed]="item.complete">
                 <mat-checkbox (click)="toggleItemCompleted(item)"></mat-checkbox>
                 <label style="padding-left:50px">{{item.name}}</label>
+                <button mat-button>
+                    <mat-icon>delete_forever</mat-icon>
+                </button>
                 <button mat-button (click)="deleteItem(item)">
-                <mat-icon>delete_forever</mat-icon>
+                    <mat-icon>delete_forever</mat-icon>
                 </button>
             </mat-list-item>
         </mat-list>
@@ -22,8 +25,8 @@
         <br />
         <div>
             <strong>{{items.length}}</strong> {{items.length == 1 ? 'thing' : 'things'}} on the list...
-            <span *ngIf="finished" class="finished"><strong>{{finished}}</strong> {{finished == 1 ? 'thing' : 'things'}} finished</span>
             <span *ngIf="unfinished" class="unfinished"><strong>{{unfinished}}</strong> {{unfinished == 1 ? 'thing' : 'things'}} unfinished</span>
+            <span *ngIf="finished" class="finished"><strong>{{finished}}</strong> {{finished == 1 ? 'thing' : 'things'}} finished</span>
         </div>
     </div>
 </div>
