@@ -9,7 +9,7 @@ import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from "@angular/forms";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
-import { MatInputModule, MatFormFieldModule, MatButtonModule, MatIconModule, MatListModule, MatCheckboxModule } from '@angular/material';
+import { MatInputModule, MatFormFieldModule, MatButtonModule, MatIconModule, MatListModule, MatCheckboxModule, MatToolbarModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,8 @@ import { MatInputModule, MatFormFieldModule, MatButtonModule, MatIconModule, Mat
     MatButtonModule,
     MatIconModule,
     MatListModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatToolbarModule
   ],
   providers: [ItemService],
   bootstrap: [AppComponent]

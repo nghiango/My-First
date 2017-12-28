@@ -1,0 +1,21 @@
+.container {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.form-enter {
+    margin-top: 20px;
+    text-align: center
+}
+
+.completed {
+    text-decoration: line-through;
+}
+
+.finished {
+    padding-left: 30%;
+}
+
+.unfinished {
+    padding-left: 30%;
+}
