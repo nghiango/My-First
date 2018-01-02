@@ -12,6 +12,7 @@ export class ItemComponent implements OnInit {
   finished = 0
   unfinished = 0
   editName = ''
+  check = false
   constructor(private itemService: ItemService) { }
 
   ngOnInit() {
@@ -54,6 +55,7 @@ export class ItemComponent implements OnInit {
   }
 
   toggleItemCompleted(item: Item) {
+    item.completed = !item.completed
     this.itemService.toggleItemCompleted(item);
     this.finished = this.itemService.findByCompleted(true);
     this.unfinished = this.itemService.findByCompleted(false);

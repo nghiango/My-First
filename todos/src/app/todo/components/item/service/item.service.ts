@@ -45,9 +45,7 @@ export class ItemService {
   }
 
   toggleItemCompleted(item): Item {
-    let updateItem = this.updateItemById(item.id, {
-      completed: !item.completed
-    })
+    let updateItem = this.updateItemById(item.id, item)
     return updateItem;
   }
 

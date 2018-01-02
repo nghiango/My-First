@@ -1,3 +1,8 @@
+label {
+    padding-left: 50px;
+    padding-right: 50px
+}
+
 .container {
     margin-left: 10%;
     margin-right: 10%;
@@ -8,8 +13,10 @@
     text-align: center
 }
 
-.completed {
+.completed label {
+    transition: color 0.3s ease-out;
     text-decoration: line-through;
+    color: grey;
 }
 
 .finished {
@@ -18,4 +25,10 @@
 
 .unfinished {
     padding-left: 30%;
+}
+
+.wrapbutton {
+    position: absolute;
+    right: 640px;
+    top: 0px;
 }

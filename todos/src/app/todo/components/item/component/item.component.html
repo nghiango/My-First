@@ -9,22 +9,24 @@
 <div class="container">
     <div *ngIf="items.length > 0">
         <mat-list class="items-list">
-            <mat-list-item *ngFor="let item of items" [class.completed]="item.complete">
+            <mat-list-item *ngFor="let item of items" [class.completed]="item.completed">
                 <div *ngIf="item.editing">
                     <input [(ngModel)]="editName" [required]="true" />
-                    <button mat-mini-fab color="primary" (click)="updateItem(item)">
+                    <button class="wrapbutton" mat-mini-fab color="primary" (click)="updateItem(item)">
                             <mat-icon>save</mat-icon>
                         </button>
                 </div>
                 <div *ngIf="!item.editing">
-                    <mat-checkbox (click)="toggleItemCompleted(item)"></mat-checkbox>
-                    <label style="padding-left:50px; padding-right:50px">{{item.name}}</label>
-                    <button mat-mini-fab color="primary" (click)="editItem(item)">
-                        <mat-icon>mode_edit</mat-icon>
-                    </button>
-                    <button mat-mini-fab color="warn" (click)="deleteItem(item)">
-                        <mat-icon>delete_forever</mat-icon>
-                    </button>
+                    <mat-checkbox [checked]="check" (click)="toggleItemCompleted(item)"></mat-checkbox>
+                    <label>{{item.name}}</label>
+                    <span class="wrapbutton">
+                        <button mat-mini-fab color="primary" [disabled]="item.completed" (click)="editItem(item)">
+                            <mat-icon>mode_edit</mat-icon>
+                        </button>
+                        <button mat-mini-fab color="warn" (click)="deleteItem(item)">
+                            <mat-icon>delete_forever</mat-icon>
+                        </button>
+                    </span>
                 </div>
 
             </mat-list-item>
