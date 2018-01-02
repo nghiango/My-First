@@ -2,6 +2,7 @@ export class Item {
     constructor(
         public id?:number,
         public name?:string,
-        public completed = false
+        public completed = false,
+        public editing = false
     ){}
 }
