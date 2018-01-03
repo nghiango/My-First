@@ -8,7 +8,7 @@ import { ItemService } from '../service/item.service';
   styleUrls: ['./item.component.css']
 })
 export class ItemComponent implements OnInit {
-  item = new Item();
+  items:Item[];
   finished = 0
   unfinished = 0
 
@@ -17,14 +17,16 @@ export class ItemComponent implements OnInit {
   constructor(private itemService: ItemService) { }
 
   ngOnInit() {
+    this.initItems();
   }
-
-  addItem() {
-    if (this.item.name == undefined || this.item.name.trim() == "") {
+  initItems(){
+    this.items = this.itemService.findAll();
+  }
+  addItem(name:string) {
+    if (name.trim() == "") {
       alert("Please enter your name")
     } else {
-      this.itemService.addItem(this.item)
-      this.item = new Item()
+      let item = this.itemService.addItem(name)
       this.unfinished++
     }
   }
@@ -53,10 +55,6 @@ export class ItemComponent implements OnInit {
     }
   }
 
-  get items() {
-    return this.itemService.findAll()
-  }
-
   toggleItemCompleted(item: Item) {
     item.completed = !item.completed
     this.itemService.toggleItemCompleted(item)
@@ -64,7 +62,8 @@ export class ItemComponent implements OnInit {
     this.unfinished = this.itemService.findByCompleted(false)
   }
 
-  deleteItem(item: Item) {
-    this.itemService.deleteTodoById(item.id)
+  deleteItem(id: number) {
+    this.itemService.deleteTodoById(id)
+    this.initItems()
   }
 }

@@ -1,11 +1,11 @@
-<form (ngSubmit)="addItem()" class="form-enter">
+<div class="form-enter">
     <mat-form-field class="example-full-width" style="width: 60%">
-        <input matInput placeholder="Add to do item" name="name" [(ngModel)]="item.name">
+        <input matInput placeholder="Add Todo task" name="name" #taskName>
     </mat-form-field>
-    <button mat-mini-fab color="warn">
+    <button mat-mini-fab color="warn" (click)="addItem(taskName.value)">
             <i class="material-icons">add</i>
     </button>
-</form>
+</div>
 <div class="container">
     <div *ngIf="items.length > 0">
         <mat-list class="items-list">
@@ -13,7 +13,7 @@
                 <div *ngIf="item.id === editingId; else other_content">
 
                     <mat-form-field style="width: 180%">
-                        <input matInput name="editingName" [(ngModel)]="editingName" [required]="true" />
+                        <input matInput placeholder="Modify Todo task" name="editingName" [(ngModel)]="editingName" [required]="true" />
                     </mat-form-field>
                     <div class="wrapbutton">
                         <button mat-mini-fab color="accent" (click)="turnOffItemEditing()">
@@ -31,7 +31,7 @@
                         <button mat-mini-fab color="primary" *ngIf="!item.completed" (click)="turnOnItemEditing(item)">
                             <mat-icon>mode_edit</mat-icon>
                         </button>
-                        <button mat-mini-fab color="warn" (click)="deleteItem(item)">
+                        <button mat-mini-fab color="warn" (click)="deleteItem(item.id)">
                             <mat-icon>delete_forever</mat-icon>
                         </button>
                     </span>

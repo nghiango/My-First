@@ -29,10 +29,11 @@ export class ItemService {
     return finished
   }
 
-  addItem(item: Item): ItemService {
-    item.id = ++this.lastId;
+  addItem(name: string):Item{
+    this.lastId = ++this.lastId;
+    let item = new Item(this.lastId, name)
     this.items.push(item)
-    return this
+    return item
   }
 
   updateItemById(id: number, values: Object = {}): Item {
