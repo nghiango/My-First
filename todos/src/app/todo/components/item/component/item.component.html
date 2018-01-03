@@ -10,27 +10,32 @@
     <div *ngIf="items.length > 0">
         <mat-list class="items-list">
             <mat-list-item *ngFor="let item of items" [class.completed]="item.completed">
-                <div *ngIf="item.editing">
+                <div *ngIf="item.id === editingId; else other_content">
 
-                    <mat-form-field style="width: 200%">
+                    <mat-form-field style="width: 180%">
                         <input matInput name="editingName" [(ngModel)]="editingName" [required]="true" />
                     </mat-form-field>
-                    <button class="wrapbutton" mat-mini-fab color="primary" (click)="updateItem(item)">
-                            <mat-icon>save</mat-icon>
-                    </button>
+                    <div class="wrapbutton">
+                        <button mat-mini-fab color="accent" (click)="turnOffItemEditing()">
+                            <mat-icon>highlight_off</mat-icon>
+                        </button>
+                        <button mat-mini-fab color="primary" (click)="updateItem(item)">
+                                <mat-icon>save</mat-icon>
+                        </button>
+                    </div>
                 </div>
-                <div *ngIf="!item.editing">
+                <ng-template #other_content>
                     <mat-checkbox [checked]="check" (click)="toggleItemCompleted(item)"></mat-checkbox>
-                    <label>Name: {{item.name}}</label>
+                    <label><strong>Name:</strong> {{item.name}}</label>
                     <span class="wrapbutton">
-                        <button mat-mini-fab color="primary" *ngIf="!item.completed" (click)="editItem(item)">
+                        <button mat-mini-fab color="primary" *ngIf="!item.completed" (click)="turnOnItemEditing(item)">
                             <mat-icon>mode_edit</mat-icon>
                         </button>
                         <button mat-mini-fab color="warn" (click)="deleteItem(item)">
                             <mat-icon>delete_forever</mat-icon>
                         </button>
                     </span>
-                </div>
+                </ng-template>
 
             </mat-list-item>
         </mat-list>
