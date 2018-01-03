@@ -11,16 +11,19 @@
         <mat-list class="items-list">
             <mat-list-item *ngFor="let item of items" [class.completed]="item.completed">
                 <div *ngIf="item.editing">
-                    <input [(ngModel)]="editName" [required]="true" />
+
+                    <mat-form-field style="width: 200%">
+                        <input matInput name="editingName" [(ngModel)]="editingName" [required]="true" />
+                    </mat-form-field>
                     <button class="wrapbutton" mat-mini-fab color="primary" (click)="updateItem(item)">
                             <mat-icon>save</mat-icon>
-                        </button>
+                    </button>
                 </div>
                 <div *ngIf="!item.editing">
                     <mat-checkbox [checked]="check" (click)="toggleItemCompleted(item)"></mat-checkbox>
-                    <label>{{item.name}}</label>
+                    <label>Name: {{item.name}}</label>
                     <span class="wrapbutton">
-                        <button mat-mini-fab color="primary" [disabled]="item.completed" (click)="editItem(item)">
+                        <button mat-mini-fab color="primary" *ngIf="!item.completed" (click)="editItem(item)">
                             <mat-icon>mode_edit</mat-icon>
                         </button>
                         <button mat-mini-fab color="warn" (click)="deleteItem(item)">

@@ -11,8 +11,7 @@ export class ItemComponent implements OnInit {
   item = new Item();
   finished = 0
   unfinished = 0
-  editName = ''
-  check = false
+  editingName = ''
   constructor(private itemService: ItemService) { }
 
   ngOnInit() {
@@ -30,23 +29,23 @@ export class ItemComponent implements OnInit {
   }
 
   editItem(item:Item){
-    if(this.editName != ''){
+    if(this.editingName != ''){
       alert("Please update your editing!");
     }else{
       item.editing = true;
-      this.editName = item.name
+      this.editingName = item.name
     }
   }
 
   updateItem(item:Item){
-    item.name = this.editName;
+    item.name = this.editingName;
     item.editing = false;
-    if (this.editName == undefined || this.editName.trim() == "") {
+    if (this.editingName == undefined || this.editingName.trim() == "") {
       alert("Please enter your work");
       return;
     } else {
       this.itemService.updateItemById(this.item.id, item);
-      this.editName = ''
+      this.editingName = ''
     }
   }
 
